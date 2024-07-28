@@ -4,7 +4,7 @@
   <ul id="users">
     @for(u of users; track u.id) {
     <li>
-      <app-user [user]="u" (customSelect)="onSelectUser($event)" />
+      <app-user [user]="u" [selected]="u.id === selectedUserId" (customSelect)="onSelectUser($event)" />
     </li>
 
     }
