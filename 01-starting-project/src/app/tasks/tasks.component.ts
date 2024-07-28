@@ -38,7 +38,12 @@ export class TasksComponent {
       dueDate: '2024-06-15',
     },
   ];
+
   get selectedUserTasks() {
     return this.tasks.filter(t=> t.userId === this.userId)
+  }
+
+  onCompleteTask(id: string) {
+    this.tasks = this.tasks.filter(t => t.id !== id);
   }
 }
