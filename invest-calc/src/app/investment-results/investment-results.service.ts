@@ -5,6 +5,7 @@ import { type Result } from "./result.model";
 export class ResultsService {
   private annualData: Result[] = [];
   calculateInvestmentResults(initialInvestment: number, annualInvestment: number, expectedReturn: number, duration: number) {
+    this.annualData.length = 0;
     let formattedNumber = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -21,10 +22,10 @@ export class ResultsService {
         investmentValue - annualInvestment * year - initialInvestment;
       this.annualData.push({
         year: year,
-        investmentValue: formattedNumber.format(investmentValue),
-        yearInterest: formattedNumber.format(interestEarnedInYear),
-        totalInterest: formattedNumber.format(totalInterest),
-        investedCapital: formattedNumber.format(initialInvestment + annualInvestment * year)
+        investmentValue: investmentValue,
+        yearInterest: interestEarnedInYear,
+        totalInterest: totalInterest,
+        investedCapital: initialInvestment + annualInvestment * year
       });
     }  
   }

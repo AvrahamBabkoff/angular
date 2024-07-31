@@ -14,8 +14,8 @@ export class UserInputComponent {
 
   initialInvestment = 0;
   annualInvestment = 0;
-  expectedReturn = 0;
-  duration = 0;
+  expectedReturn = 5;
+  duration = 10;
 
   onSubmit() {
     console.log(
