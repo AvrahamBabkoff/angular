@@ -7,6 +7,7 @@ import {
   inject,
   ElementRef,
   ContentChild,
+  contentChild,
 } from '@angular/core';
 
 @Component({
@@ -28,13 +29,20 @@ export class ControlComponent {
   // }
   label = input.required<string>();
   private el = inject(ElementRef);
-  @ContentChild('input') private control?: ElementRef<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
+  // @ContentChild('input') private control?: ElementRef<
+  //   HTMLInputElement | HTMLTextAreaElement
+  // >;
 
+  // private control = contentChild.required<ElementRef<
+  //   HTMLInputElement | HTMLTextAreaElement
+  // >>('input');
+
+  private control = contentChild<ElementRef<
+    HTMLInputElement | HTMLTextAreaElement
+  >>('input');
   onClick() {
     console.log('click property');
     console.log(this.el);
-    console.log(this.control);
+    console.log(this.control());
   }
 }
