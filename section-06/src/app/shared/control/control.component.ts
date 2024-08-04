@@ -5,7 +5,8 @@ import {
   input,
   ViewEncapsulation,
   inject,
-  ElementRef
+  ElementRef,
+  ContentChild,
 } from '@angular/core';
 
 @Component({
@@ -17,18 +18,23 @@ import {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'control',
-    '(click)': 'onClick()'
-  }
+    '(click)': 'onClick()',
+  },
 })
 export class ControlComponent {
   // @HostBinding('class') className = 'control';
   // @HostListener('click') onclick() {
   //   console.log('click host element');
   // }
+  label = input.required<string>();
+  private el = inject(ElementRef);
+  @ContentChild('input') private control?: ElementRef<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
+
   onClick() {
     console.log('click property');
     console.log(this.el);
+    console.log(this.control);
   }
-  label = input.required<string>();
-  private el = inject(ElementRef);
 }
